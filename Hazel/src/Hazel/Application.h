@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Core.h"
+#include "Events/Event.h"
 
 namespace Hazel {
 
+	// Main application class of the engine will provide all required functionality to the subclass/executable code. 
 	class HAZEL_API Application
 	{
 	public:
@@ -14,7 +16,7 @@ namespace Hazel {
 	private:
 	};
 
-	// To be defined in client 
+	// To be defined in CLIENT
 	Application* CreateApplication(); 
 
 }

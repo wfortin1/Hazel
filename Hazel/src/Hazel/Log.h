@@ -3,11 +3,11 @@
 #include "Core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
-
-#include <memory>
+#include "spdlog/fmt/ostr.h" // We add this so that we can use custom ostream operator
 
 namespace Hazel {
 
+	// Class used for logging. To access a log use Log::Get<name>Logger(); 
 	class HAZEL_API Log
 	{
 	public:
@@ -20,6 +20,9 @@ namespace Hazel {
 		static std::shared_ptr<spdlog::logger> s_ClientLogger; 
 	};
 }
+
+// We define some macros so that we can avoid calling static object member methods all throughout our code.
+// Also allows us to easily switch out logging libraries if required.
 
 // Core Log Macros 
 #define HZ_CORE_TRACE(...)     ::Hazel::Log::GetCoreLogger()->trace(__VA_ARGS__)

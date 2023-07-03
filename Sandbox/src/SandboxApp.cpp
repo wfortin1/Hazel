@@ -1,20 +1,22 @@
 #include <Hazel.h>
 
-class Sandbox : public Hazel::Application
+// Sandbox client app
+class SandboxApp : public Hazel::Application
 {
 public: 
-	Sandbox()
+	SandboxApp()
 	{
 
 	}
 
-	~Sandbox()
+	~SandboxApp()
 	{
 
 	}
 };
 
+// Function required to be defined by "EntryPoint.h" returns a SandboxApp
 Hazel::Application* Hazel::CreateApplication()
 {
-	return new Sandbox(); 
+	return new SandboxApp(); 
 }

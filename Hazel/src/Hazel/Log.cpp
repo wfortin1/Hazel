@@ -1,10 +1,14 @@
+#include "hzpch.h"
 #include "Log.h"
 
 namespace Hazel {
-
+	
+	// We have a static logger that performs engine side logging and
+	// we have a static logger that performs client side logging.
 	std::shared_ptr<spdlog::logger> Log::s_CoreLogger;
 	std::shared_ptr<spdlog::logger> Log::s_ClientLogger;
 
+	// Since they are static we only have to call an init function once!
 	void Log::Init()
 	{
 		spdlog::set_pattern("%^[%T] %n: %v%$");
