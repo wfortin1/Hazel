@@ -5,6 +5,12 @@ workspace "Hazel"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
+
+include "Hazel/vendor/GLFW" -- Includes glfw premake file into this premake file
+
 project "Hazel"
   location "Hazel"
   kind "SharedLib"
@@ -25,12 +31,19 @@ project "Hazel"
   includedirs 
   {
     "%{prj.name}/src",
-    "%{prj.name}/vendor/spdlog/include"
+    "%{prj.name}/vendor/spdlog/include",
+    "%{IncludeDir.GLFW}"
+  }
+
+  links
+  {
+    "GLFW",
+    "opengl32.lib"
   }
 
   filter "system:windows"
     cppdialect "C++17"
-    staticruntime "On"
+    staticruntime "Off"
     systemversion "latest"
 
     defines
@@ -47,10 +60,12 @@ project "Hazel"
   filter "configurations:Debug"
     defines "HZ_DEBUG"
     symbols "On"
+    runtime "Debug"
 
   filter "configurations:Release"
     defines "HZ_RELEASE"
     optimize "On"
+    runtime "Release"
 
   filter "configurations:Dist"
     defines "HZ_DIST"
@@ -83,7 +98,7 @@ project "Sandbox"
 
   filter "system:windows"
     cppdialect "C++17"
-    staticruntime "On"
+    staticruntime "Off"
     systemversion "latest"
 
     defines

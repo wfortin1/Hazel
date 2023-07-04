@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "Events/Event.h"
+#include "Window.h"
 
 namespace Hazel {
 
@@ -13,6 +14,9 @@ namespace Hazel {
 		virtual ~Application();
 
 		void Run(); 
+	private:
+		bool m_Running = true;
+		std::unique_ptr<Window> m_Window; 
 	private:
 	};
 
