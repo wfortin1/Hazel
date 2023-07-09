@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Hazel/Core.h"
+#include "Hazel/Log.h"
+
 #include <iostream>
 #include <memory>
 #include <algorithm>

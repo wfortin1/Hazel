@@ -4,7 +4,6 @@
 // This includes the main function and simply creates a new application based on the external CreateApplication() function
 // Defined in the client side code. Just starts the app which should be implemented by the subclass.
 
-#include "Log.h"
 #include "Application.h"
 
 #ifdef HZ_PLATFORM_WINDOWS

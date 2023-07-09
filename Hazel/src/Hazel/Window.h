@@ -2,7 +2,6 @@
 
 #include "hzpch.h"
 
-#include "Hazel/Core.h"
 #include "Hazel/Events/Event.h"
 
 namespace Hazel {
@@ -40,7 +39,6 @@ namespace Hazel {
 		virtual bool IsVSync() const = 0; 
 
 		static Window* Create(const WindowProps& props = WindowProps());
-	private:
 	};
 
 }

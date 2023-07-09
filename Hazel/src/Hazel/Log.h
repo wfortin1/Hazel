@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Core.h"
+#include "hzpch.h"
+
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/fmt/ostr.h" // We add this so that we can use custom ostream operator

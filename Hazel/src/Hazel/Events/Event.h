@@ -1,7 +1,5 @@
 #pragma once 
 
-#include "Hazel/Core.h"
-
 namespace Hazel {
 
 	// Events in hazel are currently blocking, meaning when an event occurs
@@ -16,7 +14,7 @@ namespace Hazel {
 		KeyPressed, KeyReleased,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
-
+	 
 	// Event category types to filter by certain events 
 	enum EventCategory
 	{
@@ -48,6 +46,8 @@ namespace Hazel {
 		{
 			return GetCategoryFlags() & category; 
 		}
+
+		inline bool Handled() { return m_Handled; }
 	protected:
 		bool m_Handled = false; 
 	};
