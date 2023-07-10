@@ -2,9 +2,14 @@
 
 #include "Hazel/Window.h"
 
-#include <GLFW/glfw3.h>
+struct GLFWwindow; 
 
 namespace Hazel {
+
+	struct WindowImpl
+	{
+		GLFWwindow* Window; 
+	};
 
 	class HAZEL_API WindowsWindow : public Window
 	{
@@ -21,6 +26,9 @@ namespace Hazel {
 		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 		void SetVSync(bool enabled) override; 
 		bool IsVSync() const override; 
+		WindowImpl GetWindowImpl() override; 
+
+		inline GLFWwindow* GetGLFWWindow() { return m_Window; }
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown(); 

@@ -3,6 +3,7 @@
 #include "Layerstack.h"
 
 namespace Hazel {
+
 	LayerStack::LayerStack()
 	{
 		m_LayerInsert = m_Layers.begin(); 

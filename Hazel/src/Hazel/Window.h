@@ -20,6 +20,8 @@ namespace Hazel {
 		}
 	};
 
+	struct WindowImpl;
+
 	// Interface representing a desktop system based Window 
 	class HAZEL_API Window
 	{
@@ -37,6 +39,8 @@ namespace Hazel {
 		virtual void SetEventCallback(const EventCallbackFn& callback) = 0; 
 		virtual void SetVSync(bool enabled) = 0; 
 		virtual bool IsVSync() const = 0; 
+
+		virtual WindowImpl GetWindowImpl() = 0; 
 
 		static Window* Create(const WindowProps& props = WindowProps());
 	};

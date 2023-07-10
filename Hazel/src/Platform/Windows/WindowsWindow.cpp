@@ -5,8 +5,8 @@
 #include "Hazel/Events/MouseEvent.h"
 #include "Hazel/Events/ApplicationEvent.h"
 
-#include "Hazel/Core.h"
-#include "Hazel/Log.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 namespace Hazel {
 
@@ -49,6 +49,13 @@ namespace Hazel {
 		return m_Data.VSync; 
 	}
 
+	WindowImpl WindowsWindow::GetWindowImpl()
+	{
+		WindowImpl windowImpl; 
+		windowImpl.Window = GetGLFWWindow(); 
+		return windowImpl; 
+	}
+
 	void WindowsWindow::Init(const WindowProps& props)
 	{
 		m_Data.Title = props.Title; 
@@ -67,13 +74,16 @@ namespace Hazel {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		HZ_CORE_ASSERT(status, "Failed to initialize Glad!");
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
 		// Set GLFW Callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
 			{
-				//WindowData data = (WindowData*)glfwGetWindowUserPointer(window); 
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 				WindowResizeEvent event(width, height);
